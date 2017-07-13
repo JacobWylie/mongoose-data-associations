@@ -1,39 +1,16 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/blog_demo_2', {useMongoClient: true});
-
-
-//POST schema - title, content
-const postSchema = new mongoose.Schema({
-	title: String,
-	content: String
-});
-// Turns into a model
-const Post = mongoose.model('Post', postSchema);
-
-// USER schema - email, name
-const userSchema = new mongoose.Schema({
-	email: String,
-	name: String,
-	posts: [
-		{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Post'
-		}
-	]
-});
-// Turns into a model
-const User = mongoose.model('User', userSchema);
-
+const Post = require('./models/post');
+const User = require('./models/user');
 
 // User.create({
 // 	email: 'bob@gmail.com',
 // 	name: 'Bob Belcher'
 // })
 
-
 // Post.create({
-// 	title: 'How do make cereal',
-// 	content: "gibberish"
+// 	title: 'How do make cereal part 2',
+// 	content: "yo yo yo "
 // }, (err, post) => {
 // 	User.findOne({email:'bob@gmail.com'}, (err, foundUser) => {
 // 		if(err) {
